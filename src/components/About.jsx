@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div data-scroll data-scroll-speed='-.2' className="w-full py-20 bg-[#cdea68] rounded-t-3xl text-zinc-900">
+    <div id="about" data-scroll data-scroll-speed='-0.18' className="w-full py-20 bg-[#cdea68] rounded-t-3xl text-zinc-900">
       <div className="px-[5.922vw]">
         <p className="text-[3.4vw] text-justify leading-none w-[100%]">
           VeloSynq is the all-in-one platform designed to accelerate product velocity

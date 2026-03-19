@@ -15,7 +15,7 @@ const Featured = () => {
 
 
   return (
-    <div className="relative z-10 bg-gray-50 w-full py-20">
+    <div id="our-work" className="relative z-10 bg-gray-50 w-full py-20">
       <div className="w-full px-[3.922vw] pb-10 border-b border-gray-300">
         <h1 className="text-[4vw] text-zinc-900">Featured projects</h1>
       </div>
@@ -27,7 +27,7 @@ const Featured = () => {
             {/* ****************************** */}
           <motion.div onHoverStart={()=>{handelHovering(0)}} onHoverEnd={()=>{handelHoverEnd(0)}} className="cardcontainer group/card1 relative w-1/2 p-2 mb-10  h-[50vh] md:h-[75vh]">
             <div className="card relative z-0 flex flex-col w-full h-full rounded-lg hover:scale-95 transition-all duration-300 overflow-hidden">
-              <p className="bg-[#f0f7ff] px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• DocSync</p>
+              <p className=" px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• DocSync</p>
               <svg className="w-full flex-1" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="400" height="400" fill="#f0f7ff"/>
                 <rect x="100" y="120" width="60" height="90" fill="#7c9ef8" rx="4"/>
@@ -38,7 +38,7 @@ const Featured = () => {
                 <circle cx="200" cy="320" r="8" fill="#7c9ef8"/>
                 <circle cx="270" cy="320" r="8" fill="#7c9ef8"/>
               </svg>
-              <div className="flex flex-wrap gap-2 px-4 py-3 bg-[#f0f7ff]">
+              <div className="flex flex-wrap gap-2 px-4 py-3 ">
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Real-time Editing</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Version History</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Team Wikis</span>
@@ -58,7 +58,7 @@ const Featured = () => {
           {/* ****************************************************** */}
           <motion.div onHoverStart={()=>{handelHovering(1)}} onHoverEnd={()=>{handelHoverEnd(1)}} className="cardcontainer group relative w-1/2 p-2 mb-10 h-[50vh] md:h-[75vh]">
             <div className="card flex flex-col w-full h-full rounded-lg hover:scale-95 transition-all duration-300 overflow-hidden relative">
-              <p className="bg-[#f0f7ff] px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• TaskVault</p>
+              <p className=" px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• TaskVault</p>
               <svg className="w-full flex-1" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="400" height="400" fill="#f0f7ff"/>
                 <rect x="120" y="100" width="70" height="70" fill="#7c9ef8" rx="8"/>
@@ -69,7 +69,7 @@ const Featured = () => {
                 <line x1="155" y1="190" x2="155" y2="230" stroke="#7c9ef8" strokeWidth="2"/>
                 <circle cx="200" cy="200" r="15" fill="none" stroke="#7c9ef8" strokeWidth="2"/>
               </svg>
-              <div className="flex flex-wrap gap-2 px-4 py-3 bg-[#f0f7ff]">
+              <div className="flex flex-wrap gap-2 px-4 py-3 ">
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Sprint Planning</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Kanban Board</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Backlog Management</span>
@@ -90,7 +90,7 @@ const Featured = () => {
 
           <div className="cardcontainer group relative w-1/2 p-2 h-[50vh] md:h-[75vh]">
             <div className="card flex flex-col w-full h-full rounded-lg hover:scale-95 transition-all duration-300 overflow-hidden relative">
-              <p className="bg-[#f0f7ff] px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• ContentHub</p>
+              <p className=" px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• ContentHub</p>
               <svg className="w-full flex-1" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="400" height="400" fill="#f0f7ff"/>
                 <circle cx="150" cy="170" r="25" fill="#7c9ef8"/>
@@ -101,7 +101,7 @@ const Featured = () => {
                 <line x1="150" y1="195" x2="200" y2="240" stroke="#7c9ef8" strokeWidth="2"/>
                 <line x1="250" y1="195" x2="200" y2="240" stroke="#7c9ef8" strokeWidth="2"/>
               </svg>
-              <div className="flex flex-wrap gap-2 px-4 py-3 bg-[#f0f7ff]">
+              <div className="flex flex-wrap gap-2 px-4 py-3 ">
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Headless CMS</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Media Library</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Multi-channel</span>
@@ -117,7 +117,7 @@ const Featured = () => {
           {/* ****************************************************** */}
           <div className="cardcontainer group relative w-1/2 p-2 h-[50vh] md:h-[75vh]">
             <div className="card flex flex-col w-full h-full rounded-lg hover:scale-95 transition-all duration-300 overflow-hidden relative">
-              <p className="bg-[#f0f7ff] px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• QAFlow</p>
+              <p className=" px-4 pt-3 pb-2 text-gray-900 font-['NeueMontrealLight'] text-lg">• QAFlow</p>
               <svg className="w-full flex-1" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="400" height="400" fill="#f0f7ff"/>
                 <path d="M180 120 L160 160 L180 200 L200 180 L220 200 L240 160 L220 120 Z" fill="#7c9ef8"/>
@@ -131,7 +131,7 @@ const Featured = () => {
                 <line x1="200" y1="295" x2="170" y2="315" stroke="#7c9ef8" strokeWidth="2"/>
                 <line x1="200" y1="295" x2="230" y2="315" stroke="#7c9ef8" strokeWidth="2"/>
               </svg>
-              <div className="flex flex-wrap gap-2 px-4 py-3 bg-[#f0f7ff]">
+              <div className="flex flex-wrap gap-2 px-4 py-3 ">
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Test Automation</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">Bug Tracking</span>
                 <span className="px-3 py-1 text-xs font-['NeueMontrealLight'] text-gray-700 border border-gray-300 rounded-full">CI/CD Integration</span>

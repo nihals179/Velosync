@@ -30,7 +30,7 @@ const Eyes = () => {
 
   return (
     <div className="eyes w-full h-screen overflow-hidden">
-      <div data-scroll data-scroll-speed='-.7' className='relative h-full w-full bg-[url("https://ochi.design/wp-content/uploads/2022/05/Top-Viewbbcbv-1-1440x921.jpg")] bg-cover bg-center'>
+      <div data-scroll data-scroll-speed='-.6' className='relative h-full w-full bg-[url("https://ochi.design/wp-content/uploads/2022/05/Top-Viewbbcbv-1-1440x921.jpg")] bg-cover bg-center'>
         <div className="absolute flex items-center justify-between gap-10 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%]">
           <div className="relative w-[14vw] h-[14vw] bg-zinc-100 rounded-full flex items-center justify-center overflow-hidden">
             <div

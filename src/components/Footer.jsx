@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <div data-scroll data-scroll-section  className='relative px-[3.922vw] py-10 w-full bg-zinc-800 z-10'>
+    <div id="contact" data-scroll data-scroll-section className='relative px-[3.922vw] py-10 w-full bg-zinc-800 z-10'>
         <div className='flex items-start justify-between'>
       <div className='w-1/2 h-screen  flex flex-col justify-between'>
         <div>

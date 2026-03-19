@@ -8,6 +8,21 @@
 }
 
 @font-face {
+    font-family: NeueMontrealLight;
+    src: url(/Fonts/NeueMontreal-Light.otf);
+}
+
+@font-face {
+    font-family: NeueMontrealBold;
+    src: url(/Fonts/NeueMontreal-Bold.otf);
+}
+
+@font-face {
+    font-family: NeueMontrealBoldItalic;
+    src: url(/Fonts/NeueMontreal-BoldItalic.otf);
+}
+
+@font-face {
     font-family: FoundersGrotesk;
     src: url(/Fonts/FoundersGrotesk-Semibold.woff);
 }

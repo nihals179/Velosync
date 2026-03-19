@@ -4,36 +4,43 @@ const About = () => {
   return (
     <div data-scroll data-scroll-speed='-.2' className="w-full py-20 bg-[#cdea68] rounded-t-3xl text-zinc-900">
       <div className="px-[5.922vw]">
-        <p className="text-[3.65vw] leading-none w-[90%]">
-          Ochi is a strategic partner for fast-growing tech businesses that need
-          to raise funds, sell products, explain complex ideas, and hire great
-          people.
+        <p className="text-[3.4vw] text-justify leading-none w-[100%]">
+          VeloSynq is the all-in-one platform designed to accelerate product velocity
+          and synchronize teams across development, marketing, and sales. We help
+          ambitious companies ship faster and scale smarter.
         </p>
       </div>
       {/* ******************************************************************************************* */}
-      <div className="w-full border-y border-zinc-500/60 mt-12 px-[5.922vw]">
+      <div className="w-full border-y border-zinc-500/60 mt-12 px-[5.922vw] font-['NeueMontreal'] text-[1.3vw] py-10">
         <div className="flex flex-col md:flex-row gap-10 pt-4 pb-28">
           <div className="md:basis-[25vw] lg:basis-[50vw]">
             What you can expect:
           </div>
-          <div className="flex flex-col basis-[25vw] w-[50vw] gap-7">
+          <div className="flex flex-col basis-[25vw] w-[70vw] gap-7">
             <span>
-              We create tailored presentations to help you persuade your
-              colleagues, clients, or investors. Whether it’s live or digital,
-              delivered for one or a hundred people.
+              Our platform streamlines workflows, automates repetitive tasks, and provides
+              real-time visibility into your development pipeline. From sprint planning
+              to product launch, VeloSynq keeps your team aligned and productive.
             </span>
 
             <span>
-              We believe the mix of strategy and design (with a bit of coffee)
-              is what makes your message clear, convincing, and captivating.
+              Built for product teams by product teams, VeloSynq combines powerful
+              analytics, intelligent automation, and seamless integrations to transform
+              how you build, ship, and iterate on products.
+            </span>
+
+            <span>
+              Whether you're optimizing for speed, scalability, or collaboration, our platform
+              adapts to your workflow. We provide the tools, insights, and support needed to
+              accelerate growth and maintain competitive advantage in fast-moving markets.
             </span>
           </div>
-          <div className="flex flex-col basis-[25vw]  justify-end md:pl-24">
-            <span className="mb-3">S:</span>
-            <span>Instagram</span>
-            <span>Behance</span>
-            <span>Facebook</span>
-            <span>Linkedin</span>
+          <div className="flex flex-col basis-[25vw]  justify-end md:pl-40">
+            <span className="mb-3">Follow:</span>
+            <span>Twitter</span>
+            <span>GitHub</span>
+            <span>LinkedIn</span>
+            <span>Product Hunt</span>
           </div>
         </div>
       </div>

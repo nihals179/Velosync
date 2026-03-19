@@ -21,7 +21,7 @@ const locomotiveScroll = new LocomotiveScroll();
       <About/>
       <Eyes/>
       <Featured/>
-      <Cards/>
+      {/* <Cards/> */}
       <Footer/>
     </div>
   )

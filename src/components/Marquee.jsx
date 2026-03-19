@@ -11,7 +11,7 @@ const Marquee = () => {
           transition={{ ease: "linear", repeat: Infinity, duration: 5 }}
           className=" leading-none -mt-[5.8vw] -mb-[2.665vw]"
         >
-          We are Ochi
+          We are Velosync
         </motion.h1>
         <motion.h1
            initial={{ x: '3%' }}
@@ -19,7 +19,7 @@ const Marquee = () => {
           transition={{ ease: "linear", repeat: Infinity, duration: 5 }}
           className=" leading-none -mt-[5.8vw] -mb-[2.665vw]"
         >
-          We are Ochi
+          We are Velosync
         </motion.h1>
         
       </div>

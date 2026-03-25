@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const CareersPage = () => {
   return (
-    <div className="w-full overflow-x-hidden min-h-screen text-white font-[NeueMontreal]" style={{ backgroundColor: "#cdea68" }}>
+    <div className="w-full overflow-x-hidden min-h-screen text-zinc-900 font-[NeueMontreal] bg-white">
       <Navbar />
       <Careers />
       <Footer />

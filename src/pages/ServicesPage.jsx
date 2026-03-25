@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const ServicesPage = () => {
   return (
-    <div className="w-full overflow-x-hidden min-h-screen text-white font-[NeueMontreal] bg-zinc-900">
+    <div className="w-full overflow-x-hidden min-h-screen text-zinc-900 font-[NeueMontreal] bg-white">
       <Navbar />
       <Services />
       <Footer />

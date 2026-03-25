@@ -27,7 +27,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="w-full overflow-x-hidden min-h-screen font-[NeueMontreal] bg-zinc-900 text-white">
+    <div className="w-full overflow-x-hidden min-h-screen font-[NeueMontreal] bg-white text-zinc-900">
       <Navbar />
 
       <div className="px-[3.922vw] pt-36 pb-24">
@@ -41,7 +41,7 @@ const ContactPage = () => {
           <p className="font-['NeueMontrealLight'] text-zinc-500 text-[1.1vw] mb-3 uppercase tracking-widest">
             Get in touch
           </p>
-          <h1 className="font-['FoundersGrotesk'] uppercase text-[7vw] leading-none text-white">
+          <h1 className="font-['FoundersGrotesk'] uppercase text-[7vw] leading-none text-zinc-900">
             Contact Us
           </h1>
         </motion.div>
@@ -56,7 +56,7 @@ const ContactPage = () => {
           >
             {submitted ? (
               <div className="flex flex-col gap-6 py-20">
-                <span className="font-['FoundersGrotesk'] uppercase text-[4vw] text-[#cdea68] leading-none">
+                <span className="font-['FoundersGrotesk'] uppercase text-[4vw] text-[#004d43] leading-none">
                   Thank you!
                 </span>
                 <p className="font-['NeueMontrealLight'] text-zinc-400 text-[1.2vw] leading-relaxed max-w-[40vw]">
@@ -84,7 +84,7 @@ const ContactPage = () => {
                         placeholder={field.placeholder}
                         required
                         rows={5}
-                        className="w-full bg-transparent border-b border-zinc-700 focus:border-[#cdea68] outline-none font-['NeueMontrealLight'] text-white text-[1.1vw] py-3 placeholder:text-zinc-600 transition-colors duration-300 resize-none"
+                        className="w-full bg-transparent border-b border-zinc-300 focus:border-[#004d43] outline-none font-['NeueMontrealLight'] text-zinc-900 text-[1.1vw] py-3 placeholder:text-zinc-400 transition-colors duration-300 resize-none"
                       />
                     ) : (
                       <input
@@ -94,7 +94,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         placeholder={field.placeholder}
                         required
-                        className="w-full bg-transparent border-b border-zinc-700 focus:border-[#cdea68] outline-none font-['NeueMontrealLight'] text-white text-[1.1vw] py-3 placeholder:text-zinc-600 transition-colors duration-300"
+                        className="w-full bg-transparent border-b border-zinc-300 focus:border-[#004d43] outline-none font-['NeueMontrealLight'] text-zinc-900 text-[1.1vw] py-3 placeholder:text-zinc-400 transition-colors duration-300"
                       />
                     )}
                   </div>
@@ -103,10 +103,10 @@ const ContactPage = () => {
                 <div className="w-full pt-4">
                   <button
                     type="submit"
-                    className="flex items-center gap-4 px-10 py-4 bg-[#cdea68] text-zinc-900 font-['NeueMontrealLight'] text-[1.1vw] rounded-full hover:bg-white transition-colors duration-300"
+                    className="flex items-center gap-4 px-10 py-4 bg-[#004d43] text-white font-['NeueMontrealLight'] text-[1.1vw] rounded-full hover:bg-zinc-900 transition-colors duration-300"
                   >
                     <span>Send Message</span>
-                    <span className="w-2 h-2 rounded-full bg-zinc-900" />
+                    <span className="w-2 h-2 rounded-full bg-white" />
                   </button>
                 </div>
               </form>
@@ -124,7 +124,7 @@ const ContactPage = () => {
               <p className="font-['NeueMontrealLight'] text-zinc-500 text-[0.9vw] uppercase tracking-widest mb-3">
                 Email
               </p>
-              <p className="font-['NeueMontrealLight'] text-white text-[1.1vw]">
+              <p className="font-['NeueMontrealLight'] text-zinc-900 text-[1.1vw]">
                 contactus@velosynq.io
               </p>
             </div>
@@ -132,7 +132,7 @@ const ContactPage = () => {
               <p className="font-['NeueMontrealLight'] text-zinc-500 text-[0.9vw] uppercase tracking-widest mb-3">
                 Based in
               </p>
-              <p className="font-['NeueMontrealLight'] text-white text-[1.1vw]">
+              <p className="font-['NeueMontrealLight'] text-zinc-900 text-[1.1vw]">
                 Remote — Worldwide
               </p>
             </div>
@@ -140,11 +140,11 @@ const ContactPage = () => {
               <p className="font-['NeueMontrealLight'] text-zinc-500 text-[0.9vw] uppercase tracking-widest mb-3">
                 Response time
               </p>
-              <p className="font-['NeueMontrealLight'] text-white text-[1.1vw]">
+              <p className="font-['NeueMontrealLight'] text-zinc-900 text-[1.1vw]">
                 Within 48 hours
               </p>
             </div>
-            <div className="border-t border-zinc-800 pt-10">
+            <div className="border-t border-zinc-200 pt-10">
               <p className="font-['NeueMontrealLight'] text-zinc-500 text-[0.9vw] uppercase tracking-widest mb-5">
                 Follow us
               </p>
@@ -152,7 +152,7 @@ const ContactPage = () => {
                 {["LinkedIn", "Twitter / X", "GitHub"].map((s) => (
                   <span
                     key={s}
-                    className="font-['NeueMontrealLight'] text-zinc-400 text-[1.1vw] hover:text-white transition-colors duration-200 cursor-pointer"
+                    className="font-['NeueMontrealLight'] text-zinc-500 text-[1.1vw] hover:text-zinc-900 transition-colors duration-200 cursor-pointer"
                   >
                     {s}
                   </span>

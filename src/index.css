@@ -26,3 +26,13 @@
     font-family: FoundersGrotesk;
     src: url(/Fonts/FoundersGrotesk-Semibold.woff);
 }
+
+/* Keep pinned Featured section below Team so Team scrolls over it */
+#our-work {
+    z-index: 1 !important;
+}
+
+.pin-spacer {
+    z-index: 1 !important;
+    position: relative !important;
+}

@@ -11,27 +11,19 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true);
   const { navigateTo, transitioning } = usePageTransition();
   const location = useLocation();
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const checkVisibility = () => {
-      if (window.scrollY === 0) {
-        setIsVisible(true);
-        return;
-      }
-      const aboutSection = document.querySelector('.bg-\\[\\#cdea68\\]');
-      if (aboutSection) {
-        setIsVisible(aboutSection.getBoundingClientRect().top > 0);
-      } else {
-        setIsVisible(true);
-      }
+    const onScroll = () => {
+      const aboutEl = document.getElementById("about");
+      if (!aboutEl) return;
+      const aboutBottom = aboutEl.getBoundingClientRect().bottom;
+      setHidden(aboutBottom < 0);
     };
-
-    checkVisibility(); // run on mount
-    window.addEventListener('scroll', checkVisibility);
-    return () => window.removeEventListener('scroll', checkVisibility);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleNav = (item) => {
@@ -51,13 +43,11 @@ const Navbar = () => {
     }
   };
 
-  const isCareers = location.pathname === "/careers";
+  const isHome = location.pathname === "/";
 
   return (
     <nav
-      className={`fixed z-[999] w-full px-[5.922vw] py-5 font-[NeueMontrealBoldItalic] flex items-center justify-between backdrop-blur-2xl transition-all duration-500 bg-black/10 ${
-        isVisible ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-full'
-      } ${transitioning ? 'pointer-events-none' : ''} ${isCareers ? 'text-zinc-900' : 'text-white'}`}
+      className={`fixed z-[999] w-full px-[5.922vw] py-5 font-[NeueMontrealBoldItalic] flex items-center justify-between bg-white/90 backdrop-blur-sm transition-all duration-500 text-zinc-900 ${transitioning ? 'pointer-events-none' : ''} ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
     >
       <div className="logo">
         <h3

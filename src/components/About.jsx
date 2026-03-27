@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
@@ -26,6 +27,7 @@ const About = () => {
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
+  // ...existing code...
   return (
     <div ref={aboutRef} id="about" className="relative z-20 w-full py-20 bg-white rounded-t-3xl text-zinc-900 -mt-[12vw]">
       {/* Section label */}

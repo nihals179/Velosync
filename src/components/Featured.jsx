@@ -1,5 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useContent } from "../context/ContentContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,35 +16,70 @@ const PROJECTS = [
 ];
 
 const Featured = () => {
+  const { content } = useContent();
+  const accentColor = (content && content.accent) || (content && content.primaryColor) || '#004d43';
   const cards = [useAnimation(), useAnimation(), useAnimation(), useAnimation()];
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
   const activeCardRef = useRef(-1);
+  const [isMobile, setIsMobile] = useState(false);
+  const [blockScroll, setBlockScroll] = useState(true);
+
+  // Use only API-provided featured data. If API hasn't provided featured, render nothing.
+  const projects = (content && Array.isArray(content.featured)) ? content.featured : [];
 
   useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Block scroll for 1.5s to show data fully
+  useEffect(() => {
+    setBlockScroll(true);
+    const timer = setTimeout(() => setBlockScroll(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // No horizontal scroll on mobile
     const section = sectionRef.current;
     const track = trackRef.current;
+    if (!section || !track) return;
 
     // All titles start hidden below, then immediately show first card
     cards.forEach((c) => c.set({ y: "110%" }));
     cards[0].set({ y: "0%" });
     activeCardRef.current = 0;
 
+
     const ctx = gsap.context(() => {
       const extraPad = 300;
+      const slowZone = 400; // px of slow scroll after horizontal
 
       const st = ScrollTrigger.create({
         trigger: section,
         pin: true,
         pinSpacing: true,
         scrub: 1,
-        end: () => `+=${track.scrollWidth - window.innerWidth + extraPad * 2}`,
+        end: () => `+=${track.scrollWidth - window.innerWidth + extraPad * 2 + slowZone}`,
         invalidateOnRefresh: true,
         onUpdate(self) {
           const maxX = track.scrollWidth - window.innerWidth;
-          const total = maxX + extraPad * 2;
+          const total = maxX + extraPad * 2 + slowZone;
           const raw = self.progress * total;
-          const x = Math.max(0, Math.min(raw - extraPad, maxX));
+          let x;
+          // If in slow zone, slow down scroll progress
+          if (raw > maxX + extraPad) {
+            // Map the last slowZone px to a much slower scroll
+            const slowStart = maxX + extraPad;
+            const slowProgress = (raw - slowStart) / slowZone;
+            // Only move a small amount in the slow zone
+            x = maxX + Math.min(slowProgress * 60, slowZone * 0.15); // only move 60px over the slow zone
+          } else {
+            x = Math.max(0, Math.min(raw - extraPad, maxX));
+          }
           gsap.set(track, { x: -x });
 
           // Determine which card center is closest to viewport center
@@ -54,7 +90,7 @@ const Featured = () => {
 
           let newActive = 0;
           let closestDist = Infinity;
-          for (let i = 0; i < PROJECTS.length; i++) {
+          for (let i = 0; i < projects.length; i++) {
             const cardCenter = padL + i * (cardW + gapW) + cardW / 2;
             const dist = Math.abs(viewCenter - cardCenter);
             if (dist < closestDist) { closestDist = dist; newActive = i; }
@@ -81,14 +117,14 @@ const Featured = () => {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile, projects.length]);
 
   const svgs = [
     /* DocSync */
     <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
       <rect x="10" y="0" width="232" height="220" rx="10" fill="#edf5f3" stroke="#b8d8d3" strokeWidth="1"/>
-      <rect x="26" y="18" width="80" height="6" rx="3" fill="#004d43" opacity="0.9"/>
-      <rect x="160" y="16" width="2" height="10" rx="1" fill="#004d43"/>
+      <rect x="26" y="18" width="80" height="6" rx="3" fill={(content && content.primaryColor) || '#004d43'} opacity="0.9"/>
+      <rect x="160" y="16" width="2" height="10" rx="1" fill={(content && content.primaryColor) || '#004d43'} />
       <circle cx="190" cy="21" r="5" fill="#004d43" opacity="0.7"/>
       <circle cx="203" cy="21" r="5" fill="#004d43" opacity="0.45"/>
       <circle cx="216" cy="21" r="5" fill="#004d43" opacity="0.25"/>
@@ -218,28 +254,66 @@ const Featured = () => {
     </svg>,
   ];
 
+  const featuredBgColor = (content && content.featuredBgColor) || (content && content.backgroundColor) || '#fff';
   return (
-    <div ref={sectionRef} id="our-work" className="relative bg-white w-full overflow-hidden" style={{ zIndex: 1 }}>
+    <div ref={sectionRef} id="our-work" className="relative w-full overflow-hidden" style={{ zIndex: 1, background: featuredBgColor }}>
+      {blockScroll && (
+        <div style={{position:'fixed',top:0,left:0,width:'100vw',height:'100vh',zIndex:9999,background:'rgba(255,255,255,0)',pointerEvents:'auto'}} />
+      )}
 
       {/* Section header */}
-      <div className="w-full px-[3.922vw] py-12 flex items-end justify-between border-b border-zinc-200">
+      <div className="w-full px-5 md:px-[3.922vw] py-8 md:py-12 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-200">
         <div>
-          <p className="font-['NeueMontrealLight'] text-[1vw] uppercase tracking-widest mb-3" style={{ color: "#004d43" }}>
+          <p className="font-['NeueMontrealLight'] text-[3vw] md:text-[1vw] uppercase tracking-widest mb-3" style={{ color: "#004d43" }}>
             / Our Work
           </p>
-          <h1 className="font-['FoundersGrotesk'] text-[6vw] uppercase leading-none text-black">
+          <h1 className="font-['FoundersGrotesk'] text-[10vw] md:text-[6vw] uppercase leading-none text-black">
             Featured Projects
           </h1>
         </div>
-        <p className="font-['NeueMontrealLight'] text-[1vw] text-zinc-500 max-w-[24vw] text-right leading-relaxed">
+        <p className="font-['NeueMontrealLight'] text-[3.5vw] md:text-[1vw] text-zinc-500 max-w-full md:max-w-[24vw] md:text-right leading-relaxed">
           Four tools built to power every layer of the modern product team.
         </p>
       </div>
 
-      {/* Horizontal cards track — pl-[31vw] centers the first card, pr-[31vw] centers the last */}
-      <div ref={trackRef} className="flex items-center gap-[1.5vw] pl-[31vw] pr-[31vw] py-8" style={{ width: "max-content" }}>
+      {/* Mobile: vertical stack */}
+      {isMobile && (
+        <div className="flex flex-col gap-6 px-5 py-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.name}
+              className="relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
+            >
+              <p
+                className="font-['FoundersGrotesk'] uppercase text-zinc-900 mb-2 leading-none text-[4vw]"
+                style={{ color: project.accent || accentColor }}
+              >
+                {project.name}
+              </p>
+              <div className="card relative w-full h-[55vw] rounded-2xl overflow-hidden bg-white border border-zinc-200">
+                <div className="w-full h-full flex items-center justify-center p-4">
+                  {svgs[index]}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <h2 className="font-['FoundersGrotesk'] uppercase leading-none text-[10vw] text-black">
+                    {project.name}
+                  </h2>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
 
-        {PROJECTS.map((project, index) => (
+      {/* Desktop: horizontal scroll track */}
+      {!isMobile && (
+        <div ref={trackRef} className="flex items-center gap-[1.5vw] pl-[31vw] pr-[31vw] py-8" style={{ width: "max-content" }}>
+
+        {projects.map((project, index) => (
           <motion.div
             key={project.name}
             className="cardcontainer relative shrink-0 cursor-pointer"
@@ -254,17 +328,29 @@ const Featured = () => {
             <div className="card relative w-full h-full rounded-2xl overflow-hidden bg-white border border-zinc-200">
 
               {/* SVG illustration fills entire card */}
-              <div className="w-full h-full flex items-center justify-center p-6">
-                {svgs[index]}
-              </div>
+                <div className="w-full h-full flex items-center justify-center p-6">
+                {project.image ? (
+                  // If `image` is raw SVG markup, render it directly. Otherwise treat as image URL/data URL.
+                  (typeof project.image === 'string' && project.image.trim().startsWith('<svg')) ? (
+                    <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: project.image }} />
+                  ) : (
+                    <img src={project.image} alt={project.name || `featured-${index}`} className="w-full h-full object-cover" />
+                  )
+                ) : (
+                  svgs[index % svgs.length]
+                )}
+                </div>
 
               {/* Project name — pops up when card is scrolled into center */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <h2 className="flex font-['FoundersGrotesk'] uppercase leading-none" style={{ fontSize: "4.5vw" }}>
+                <h2
+                  className="flex font-['FoundersGrotesk'] uppercase leading-none"
+                  style={{ fontSize: "4.5vw", color: project.accent || accentColor }}
+                >
                   {project.name.split("").map((letter, i) => (
                     <div key={i} className="overflow-hidden">
                       <motion.span
-                        className="inline-block text-black"
+                        className="inline-block"
                         initial={{ y: "110%" }}
                         animate={cards[index]}
                         transition={{ delay: i * 0.04, duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
@@ -281,6 +367,7 @@ const Featured = () => {
         ))}
 
       </div>
+      )}
     </div>
   );
 };

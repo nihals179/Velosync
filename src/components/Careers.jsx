@@ -1,68 +1,12 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useContent } from "../context/ContentContext";
 
-const roles = [
-  {
-    department: "Engineering",
-    title: "Senior Full-Stack Engineer",
-    type: "Full-time",
-    location: "Remote",
-    description:
-      "Build and scale core product features across our React/Node.js stack. Own features end-to-end from architecture to deployment.",
-    tags: ["React", "Node.js", "PostgreSQL", "AWS"],
-    accent: "#004d43",
-  },
-  {
-    department: "Engineering",
-    title: "Frontend Engineer",
-    type: "Full-time",
-    location: "Remote",
-    description:
-      "Craft pixel-perfect, performant UIs for our SaaS products. Deep expertise in React, animations, and design systems required.",
-    tags: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-    accent: "#004d43",
-  },
-  {
-    department: "DevOps",
-    title: "DevOps Engineer",
-    type: "Full-time",
-    location: "Remote",
-    description:
-      "Own our CI/CD pipelines, cloud infrastructure, and reliability practices. Drive automation across build, test, and deploy workflows.",
-    tags: ["Kubernetes", "Terraform", "GitHub Actions", "AWS"],
-    accent: "#004d43",
-  },
-  {
-    department: "DevOps",
-    title: "Site Reliability Engineer",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    description:
-      "Ensure 99.9% uptime across our platform. Build monitoring, alerting, and incident response systems that scale.",
-    tags: ["Datadog", "PagerDuty", "Docker", "Linux"],
-    accent: "#004d43",
-  },
-  {
-    department: "QA & Testing",
-    title: "QA Automation Engineer",
-    type: "Full-time",
-    location: "Remote",
-    description:
-      "Design and maintain automated test suites across web and API layers. Champion quality across feature development cycles.",
-    tags: ["Playwright", "Cypress", "Jest", "CI/CD"],
-    accent: "#004d43",
-  },
-  {
-    department: "QA & Testing",
-    title: "QA Lead",
-    type: "Full-time",
-    location: "Remote / Hybrid",
-    description:
-      "Lead quality strategy for our product suite. Define test plans, manage QA engineers, and own the release readiness process.",
-    tags: ["Test Strategy", "JIRA", "API Testing", "Selenium"],
-    accent: "#004d43",
-  },
-];
+const Careers = () => {
+  const { content } = useContent();
+  const roles = (content && content.careers) || [];
+  const careersBgColor = (content && content.careersBgColor) || (content && content.backgroundColor) || '#fff';
+  const accentColor = (content && content.careersAccentColor) || (content && content.primaryColor) || '#004d43';
 
 const RoleCard = ({ role, index }) => {
   return (
@@ -76,7 +20,7 @@ const RoleCard = ({ role, index }) => {
       {/* Top row */}
       <div className="flex items-start justify-between gap-4">
         <span
-          style={{ color: role.accent, borderColor: `${role.accent}40`, backgroundColor: `${role.accent}15` }}
+          style={{ color: accentColor, borderColor: `${accentColor}40`, backgroundColor: `${accentColor}15` }}
           className="px-3 py-1 text-xs font-['NeueMontrealLight'] border rounded-full shrink-0"
         >
           {role.department}
@@ -89,13 +33,13 @@ const RoleCard = ({ role, index }) => {
 
       {/* Title */}
       <h3
-        className="font-['FoundersGrotesk'] uppercase text-[2.2vw] leading-tight text-zinc-900"
+        className="font-['FoundersGrotesk'] uppercase text-[6vw] md:text-[2.2vw] leading-tight text-zinc-900"
       >
         {role.title}
       </h3>
 
       {/* Description */}
-      <p className="font-['NeueMontrealLight'] text-zinc-500 text-[1vw] leading-relaxed flex-1">
+      <p className="font-['NeueMontrealLight'] text-zinc-500 text-[3.5vw] md:text-[1vw] leading-relaxed flex-1">
         {role.description}
       </p>
 
@@ -105,7 +49,7 @@ const RoleCard = ({ role, index }) => {
           {role.tags.map((tag) => (
             <span
               key={tag}
-              style={{ borderColor: `${role.accent}40`, color: role.accent }}
+              style={{ borderColor: `${accentColor}40`, color: accentColor }}
               className="px-3 py-1 text-xs font-['NeueMontrealLight'] border rounded-full"
             >
               {tag}
@@ -113,7 +57,7 @@ const RoleCard = ({ role, index }) => {
           ))}
         </div>
         <button
-          style={{ backgroundColor: '#004d43', color: 'white' }}
+          style={{ backgroundColor: (content && content.primaryColor) || '#004d43', color: 'white' }}
           className="flex items-center gap-3 px-5 py-2.5 rounded-full font-['NeueMontrealLight'] text-sm hover:opacity-80 transition-opacity duration-200 shrink-0 font-semibold"
         >
           <span>Apply Now</span>
@@ -124,37 +68,36 @@ const RoleCard = ({ role, index }) => {
   );
 };
 
-const Careers = () => {
   return (
-    <div id="careers" className="relative z-10 w-full pt-28 pb-20 bg-white">
+    <div id="careers" className="relative z-10 w-full pt-20 md:pt-28 pb-16 md:pb-20" style={{ background: careersBgColor }}>
       {/* Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 px-[3.922vw] pb-10 border-b border-zinc-200">
+      <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 md:gap-6 px-5 md:px-[3.922vw] pb-8 md:pb-10" style={{ borderBottom: `1px solid ${accentColor}` }}>
         <div>
-          <p className="font-['NeueMontrealLight'] text-[1.1vw] mb-3 uppercase tracking-widest" style={{ color: '#004d43' }}>
+          <p className="font-['NeueMontrealLight'] text-[3vw] md:text-[1.1vw] mb-3 uppercase tracking-widest" style={{ color: accentColor }}>
             We're hiring
           </p>
-          <h1 className="font-['FoundersGrotesk'] uppercase text-[7vw] leading-none text-zinc-900">
+          <h1 className="font-['FoundersGrotesk'] uppercase text-[12vw] md:text-[7vw] leading-none text-zinc-900">
             Careers
           </h1>
         </div>
-        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[1.1vw] max-w-[35vw] leading-relaxed text-right">
+        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[3.5vw] md:text-[1.1vw] max-w-full md:max-w-[35vw] leading-relaxed md:text-right">
           Join the team building the future of product development. We're remote-first, async-friendly, and move fast.
         </p>
       </div>
 
       {/* Role cards grid */}
-      <div className="px-[3.922vw] pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="px-5 md:px-[3.922vw] pt-8 md:pt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {roles.map((role, index) => (
           <RoleCard key={index} role={role} index={index} />
         ))}
       </div>
 
       {/* Open application */}
-      <div className="px-[3.922vw] pt-16 flex items-center justify-between">
-        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[1.1vw]">
+      <div className="px-5 md:px-[3.922vw] pt-12 md:pt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[3.5vw] md:text-[1.1vw]">
           Don't see your role? We'd still love to hear from you.
         </p>
-        <button className="flex items-center gap-4 px-8 py-4 bg-[#004d43] border border-[#004d43] rounded-full text-white font-['NeueMontrealLight'] text-[1.1vw] hover:bg-zinc-900 hover:border-zinc-900 transition-all duration-300">
+        <button className="flex items-center gap-4 px-6 md:px-8 py-3 md:py-4 rounded-full text-white font-['NeueMontrealLight'] text-[3.5vw] md:text-[1.1vw] hover:bg-zinc-900 hover:border-zinc-900 transition-all duration-300" style={{ backgroundColor: (content && content.primaryColor) || '#004d43', borderColor: (content && content.primaryColor) || '#004d43' }}>
           <span>Send open application</span>
           <span className="w-2 h-2 rounded-full bg-current" />
         </button>

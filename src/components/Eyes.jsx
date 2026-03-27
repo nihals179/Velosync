@@ -29,16 +29,16 @@ const Eyes = () => {
   }, []);
 
   return (
-    <div className="eyes w-full h-screen overflow-hidden">
-      <div data-scroll data-scroll-speed='-.8' className='relative h-full w-full bg-[url("https://ochi.design/wp-content/uploads/2022/05/Top-Viewbbcbv-1-1440x921.jpg")] bg-cover bg-center'>
-        <div className="absolute flex items-center justify-between gap-10 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%]">
-          <div data-scroll data-scroll-speed='.2' className="relative w-[14vw] h-[14vw] bg-zinc-100 rounded-full flex items-center justify-center overflow-hidden">
+    <div data-scroll data-scroll-speed='-.5' className="eyes relative z-[1] w-full h-[60vh] md:h-screen mt-16 md:mt-0">
+      <div className='relative h-full w-full bg-[url("https://ochi.design/wp-content/uploads/2022/05/Top-Viewbbcbv-1-1440x921.jpg")] bg-cover bg-center'>
+        <div className="absolute flex items-center justify-center gap-6 md:gap-10 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-full px-10">
+          <div data-scroll data-scroll-speed='.2' className="relative w-[30vw] h-[30vw] md:w-[14vw] md:h-[14vw] bg-zinc-100 rounded-full flex items-center justify-center overflow-hidden">
             <div
               style={{
                 transform: `translate(${translate.x}px, ${translate.y}px)`,
                 transition: "transform 0.1s easein",
               }}
-              className="relative w-[9vw] h-[9vw] rounded-full bg-zinc-900 overflow-hidden"
+              className="relative w-[20vw] h-[20vw] md:w-[9vw] md:h-[9vw] rounded-full bg-zinc-900 overflow-hidden"
             >
               <div
                 style={{
@@ -46,22 +46,22 @@ const Eyes = () => {
                 }}
                 className={`line absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-full px-[2px]`}
               >
-                <div className="w-[1.7vw] h-[1.7vw] rounded-full bg-zinc-100"></div>
+                <div className="w-[4vw] h-[4vw] md:w-[1.7vw] md:h-[1.7vw] rounded-full bg-zinc-100"></div>
               </div>
               
             </div>
-            <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%]">
+            <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-[3vw] md:text-base">
                 Play
               </span>
           </div>
 
-          <div data-scroll data-scroll-speed='.2'  className="relative w-[14vw] h-[14vw] bg-zinc-100 rounded-full flex items-center justify-center">
+          <div data-scroll data-scroll-speed='.2' className="relative w-[30vw] h-[30vw] md:w-[14vw] md:h-[14vw] bg-zinc-100 rounded-full flex items-center justify-center">
             <div
               style={{
                 transform: `translate(${translate.x}px, ${translate.y}px)`,
                 transition: "transform 0.1s easein",
               }}
-              className="relative w-[9vw] h-[9vw] rounded-full bg-zinc-900 overflow-hidden"
+              className="relative w-[20vw] h-[20vw] md:w-[9vw] md:h-[9vw] rounded-full bg-zinc-900 overflow-hidden"
             >
               <div
                 style={{
@@ -69,11 +69,11 @@ const Eyes = () => {
                 }}
                 className="line absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] w-full px-[2px]"
               >
-                <div className="w-[1.7vw] h-[1.7vw] rounded-full bg-zinc-100"></div>
+                <div className="w-[4vw] h-[4vw] md:w-[1.7vw] md:h-[1.7vw] rounded-full bg-zinc-100"></div>
               </div>
               
             </div>
-            <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%]">
+            <span className="absolute top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] text-[3vw] md:text-base">
                 Play
               </span>
           </div>

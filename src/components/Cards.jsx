@@ -1,10 +1,13 @@
 import React from "react";
 
 const Cards = () => {
+  // Use content.primaryColor for border color if available
+  const { content } = useContent ? useContent() : { content: null };
+  const borderColor = ((content && content.primaryColor) || '#004d43') + '33';
   return (
     <div data-scroll data-scroll-section data-scroll-speed="-.7" className=" h-screen w-full flex flex-col md:flex-row gap-5 items-center px-[3.922vw] relative ">
       <div className="cardcontainer w-full md:w-1/2 h-[55vh]">
-        <div className="card relative h-full w-full bg-[#f5faeb] rounded-xl flex items-center justify-center border border-[#004d43]/20">
+        <div className="card relative h-full w-full bg-[#f5faeb] rounded-xl flex items-center justify-center" style={{ borderColor }}>
           <img
             src="https://ochi.design/wp-content/uploads/2022/04/logo001.svg"
             alt=""
@@ -15,8 +18,8 @@ const Cards = () => {
           </button>
         </div>
       </div>
-      <div className="cardcontainer w-full md:w-1/2 h-[55vh] flex gap-5">
-          <div className="card relative w-1/2 h-full bg-[#f5faeb] rounded-xl flex items-center justify-center border border-[#004d43]/20">
+        <div className="cardcontainer w-full md:w-1/2 h-[55vh] flex gap-5">
+          <div className="card relative w-1/2 h-full bg-[#f5faeb] rounded-xl flex items-center justify-center" style={{ borderColor }}>
           <img
             src="https://ochi.design/wp-content/uploads/2022/04/logo002.svg"
             alt=""
@@ -26,7 +29,7 @@ const Cards = () => {
             RATING 5.0 ON CLUTCH
           </button>
         </div>
-        <div className="card relative w-1/2 h-full bg-[#f5faeb] rounded-xl flex items-center justify-center border border-[#004d43]/20">
+        <div className="card relative w-1/2 h-full bg-[#f5faeb] rounded-xl flex items-center justify-center" style={{ borderColor }}>
           <img
             src="https://ochi.design/wp-content/uploads/2022/04/logo003.png"
             alt=""

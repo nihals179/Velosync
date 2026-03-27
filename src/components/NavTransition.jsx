@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { useContent } from "../context/ContentContext";
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -6,7 +7,7 @@ const TRANSITION_PAGES = ["/services", "/careers", "/contact"];
 const EXIT_MS = 1100;
 const pageNames = { "/": "VeloSync", "/services": "Services", "/careers": "Careers", "/contact": "Contact" };
 
-const TransitionCtx = createContext({ navigateTo: () => {}, transitioning: false });
+const TransitionCtx = createContext({ navigateTo: () => {}, directNavigate: () => {}, transitioning: false });
 export const usePageTransition = () => useContext(TransitionCtx);
 
 const NavTransition = ({ children }) => {
@@ -45,14 +46,28 @@ const NavTransition = ({ children }) => {
     [navigate, transitioning, location.pathname]
   );
 
+  const directNavigate = useCallback(
+    (path, options = {}) => {
+      if (path === location.pathname) return;
+      // allow callers to pass navigation state (e.g. { state: { skipEntryLoader: true } })
+      const navOptions = {};
+      if (options.state) navOptions.state = options.state;
+      navigate(path, navOptions);
+      window.scrollTo(0, 0);
+    },
+    [navigate, location.pathname]
+  );
+
+  const { content } = useContent();
+  const navTransitionBgColor = (content && content.navTransitionBgColor) || (content && content.primaryColor) || '#004d43';
   return (
-    <TransitionCtx.Provider value={{ navigateTo, transitioning }}>
+    <TransitionCtx.Provider value={{ navigateTo, directNavigate, transitioning }}>
       {/* Exit overlay — scales up from bottom */}
       {exitOverlay.show && (
         <motion.div
           key="exit-overlay"
           className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto cursor-default"
-          style={{ backgroundColor: "#004d43", transformOrigin: "bottom" }}
+          style={{ backgroundColor: navTransitionBgColor, transformOrigin: "bottom" }}
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1.1, ease: [0.37, 0, 0.63, 1] }}
@@ -73,7 +88,7 @@ const NavTransition = ({ children }) => {
         <motion.div
           key="entry-overlay"
           className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
-          style={{ backgroundColor: "#004d43", transformOrigin: "top" }}
+          style={{ backgroundColor: navTransitionBgColor, transformOrigin: "top" }}
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           transition={{ duration: 1.2, ease: [0.37, 0, 0.63, 1], delay: 0.1 }}

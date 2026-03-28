@@ -2,12 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url'; 
 
 const app = express();
-const PORT = process.env.PORT || 4000;
-const DATA_PATH = path.resolve('./public/data/siteContent.json');
+const PORT = 4000;
+const DATA_PATH = path.resolve('./dist/data/siteContent.json');
 
-app.use(cors());
+// Allow CORS only from the current server (replace with your actual domain or IP)
+app.use(cors({
+  origin: '*', // Update this to match your front-end server's URL and port
+}));
 // Increase body size limits to accommodate large SVGs or data-URI images from the admin UI.
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
@@ -42,6 +46,6 @@ app.post('/api/content', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Content API server listening on port ${PORT}`);
 });

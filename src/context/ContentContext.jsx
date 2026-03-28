@@ -20,12 +20,16 @@ export const ContentProvider = ({ children }) => {
     document.documentElement.style.setProperty('--alt-background-color-dark', content && content.altBackgroundColorDark ? content.altBackgroundColorDark : '#23272f');
   }, [content && content.primaryColor, content && content.backgroundColor, content && content.altBackgroundColor, content && content.primaryColorDark, content && content.backgroundColorDark, content && content.altBackgroundColorDark]);
 
+  // Get API base URL from environment variable or default to '' (relative)
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   // On mount, load local static content first (siteContent.json).
   // If an API is available, it will override the local content.
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/api/content');
+        console.log ('api base url:', API_BASE);
+        const res = await fetch(`${API_BASE}/api/content`);
         if (res.ok) {
           const serverContent = await res.json();
           setContent(serverContent || null);
@@ -45,7 +49,7 @@ export const ContentProvider = ({ children }) => {
     if (!initializedRef.current) return;
     (async () => {
       try {
-        await fetch('/api/content', {
+        await fetch(`${API_BASE}/api/content`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(content),
@@ -65,7 +69,7 @@ export const ContentProvider = ({ children }) => {
       // Reset to empty content on both client and server.
       setContent(null);
       try {
-        await fetch('/api/content', {
+        await fetch(`${API_BASE}/api/content`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({}),

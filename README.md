@@ -39,7 +39,7 @@
    - This creates a production-ready `dist/` folder.
 
 2. **Ensure Express serves the frontend**
-   In your server file (e.g., `server.js`):
+   In your server file (e.g., `frontServer.js`):
    ```js
    app.use(express.static('dist'));
    app.get('*', (req, res) => {
@@ -48,7 +48,7 @@
    ```
 
 3. **Upload to your server**
-   - Copy `dist/`, `server.js`, `package.json`, `package-lock.json`, and any required assets to your server.
+   - Copy `dist/`, `frontServer.js`, `package.json`, `package-lock.json`, and any required assets to your server.
 
 4. **Install dependencies on the server**
    ```sh

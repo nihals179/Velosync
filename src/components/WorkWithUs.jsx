@@ -37,28 +37,28 @@ const WorkWithUs = () => {
   return (
     <section
       ref={wrapperRef}
-      className="w-full min-h-screen h-screen flex flex-col items-center justify-center py-0"
-      style={{ minHeight: '100vh', height: '100vh', background: workWithUsBgColor }}
+      className="w-full min-h-[40vh] md:min-h-screen h-auto flex flex-col items-center justify-center py-4 md:py-0"
+      style={{ background: workWithUsBgColor }}
     >
-      <h1 className="font-['FoundersGrotesk'] uppercase text-[14vw] md:text-[10vw] leading-none text-white text-center mb-8">
+      <h1 className="font-['FoundersGrotesk'] uppercase text-[7vw] md:text-[7vw] leading-none text-white text-center mb-2 md:mb-8">
         Are You Ready?
       </h1>
-      <div ref={contentRef} className="flex flex-col items-center gap-6 w-full max-w-2xl">
+      <div ref={contentRef} className="flex flex-col items-center gap-2 md:gap-6 w-full max-w-md px-2 md:px-0">
         <p className="font-['NeueMontrealLight'] text-[3vw] md:text-[1.1vw] uppercase tracking-widest" style={{ color: "#00e5c8" }}>
           Let's build together
         </p>
-        <p className="font-['NeueMontrealLight'] text-[3.5vw] md:text-[1.3vw] leading-relaxed text-center" style={{ color: "#a8d5cf" }}>
+        <p className="font-['NeueMontrealLight'] text-[3vw] md:text-[1.3vw] leading-relaxed text-center" style={{ color: "#a8d5cf" }}>
           Whether you want to contribute, collaborate, or just say hi — we'd love to hear from you.
         </p>
         <button
           onClick={() => navigate("/contact")}
-          className="group inline-flex items-center gap-3 px-10 py-4 font-['NeueMontrealLight'] text-base rounded-full transition-all duration-500"
+          className="group inline-flex items-center gap-1 md:gap-3 px-4 py-2 md:px-10 md:py-4 font-['NeueMontrealLight'] text-xs md:text-base rounded-full transition-all duration-500"
           style={{ border: "1px solid #00e5c8", color: "#00e5c8", backgroundColor: "transparent" }}
           onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#00e5c8"; e.currentTarget.style.color = "#0a0a0a"; }}
           onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#00e5c8"; }}
         >
           Work With Us
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>

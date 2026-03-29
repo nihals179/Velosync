@@ -21,7 +21,7 @@ const ServiceRow = ({ service, index }) => {
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
     >
       {/* Number */}
-      <span className="text-zinc-400 font-['NeueMontrealLight'] text-[3.5vw] md:text-[1.1vw] mt-1 w-auto md:w-[4vw] shrink-0">
+      <span className="text-zinc-400 font-['NeueMontrealBold'] text-[3.5vw] md:text-[1.1vw] mt-1 w-auto md:w-[4vw] shrink-0">
         {service.number}
       </span>
 
@@ -35,7 +35,7 @@ const ServiceRow = ({ service, index }) => {
       {/* Description + tags */}
       <div className="flex-1 flex flex-col gap-4">
         <motion.p
-          className="font-['NeueMontrealLight'] text-[3.5vw] md:text-[1.1vw] text-zinc-500 leading-relaxed max-w-full md:max-w-[40vw]"
+          className="font-['NeueMontreal'] font-semibold text-[3.5vw] md:text-[1.1vw] text-black leading-relaxed max-w-full md:max-w-[40vw]"
           animate={{ opacity: hovered ? 1 : 0.5 }}
           transition={{ duration: 0.3 }}
         >
@@ -79,7 +79,7 @@ const ServiceRow = ({ service, index }) => {
         >
           Services
         </motion.h1>
-        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[3.5vw] md:text-[1.1vw] max-w-full md:max-w-[30vw] md:text-right leading-relaxed">
+        <p className="font-['NeueMontrealLight'] font-semibold text-black text-[3.5vw] md:text-[1.1vw] max-w-full md:max-w-[30vw] md:text-right leading-relaxed">
           Everything you need to build, ship, and scale — under one roof.
         </p>
       </div>
@@ -93,7 +93,7 @@ const ServiceRow = ({ service, index }) => {
 
       {/* Bottom CTA */}
       <div className="px-5 md:px-[3.922vw] pt-12 md:pt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <p className="font-['NeueMontrealLight'] text-zinc-500 text-[3.5vw] md:text-[1.1vw]">
+        <p className="font-['NeueMontrealLight'] font-semibold text-black text-[3.5vw] md:text-[1.1vw]">
           Ready to move faster?
         </p>
         <button className="flex items-center gap-4 px-6 md:px-8 py-3 md:py-4 bg-[#004d43] border border-[#004d43] rounded-full text-white font-['NeueMontrealLight'] text-[3.5vw] md:text-[1.1vw] hover:bg-zinc-900 hover:border-zinc-900 transition-all duration-300">

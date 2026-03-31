@@ -296,10 +296,16 @@ const Featured = () => {
               </p>
               <div className="card relative w-full h-[55vw] rounded-2xl overflow-hidden bg-white border border-zinc-200">
                 <div className="w-full h-full flex items-center justify-center p-4">
-                  {svgs[index]}
+                  {project.image ? (
+                    (typeof project.image === 'string' && project.image.trim().startsWith('<svg')) ? (
+                      <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: project.image }} />
+                    ) : (
+                      <img src={project.image} alt={project.name || `featured-${index}`} className="w-full h-full object-cover" />
+                    )
+                  ) : null}
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <h2 className="font-['FoundersGrotesk'] uppercase leading-none text-[10vw] text-black">
+                  <h2 className="font-['FoundersGrotesk'] uppercase leading-none text-[10vw] text-white">
                     {project.name}
                   </h2>
                 </div>

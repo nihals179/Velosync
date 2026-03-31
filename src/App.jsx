@@ -70,6 +70,7 @@ const AppRoutes = () => {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/hidden/admin" element={<AdminPage />} />
       </Routes>
     </NavTransition>
   )

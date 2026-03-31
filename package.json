@@ -16,11 +16,13 @@
     "start": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
+    "aws-sdk": "^2.1693.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.18.4",
     "framer-motion": "^11.2.11",
     "gsap": "^3.12.5",
     "locomotive-scroll": "^5.0.0-beta.13",
-    "express": "^4.18.4",
-    "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",

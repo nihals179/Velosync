@@ -1,36 +1,14 @@
-import React, { useRef, useEffect } from "react";
+
+
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContent } from "../context/ContentContext";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion } from "framer-motion";
 
 const WorkWithUs = () => {
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const content = contentRef.current;
-    // Only animate on desktop
-    if (window.innerWidth >= 768 && wrapper && content) {
-      gsap.set(content, { opacity: 0, y: 60 });
-      ScrollTrigger.create({
-        trigger: wrapper,
-        start: "top center+=100",
-        end: "bottom center",
-        scrub: 0.5,
-        onUpdate: (self) => {
-          gsap.to(content, { opacity: self.progress, y: 60 - 60 * self.progress, overwrite: true });
-        },
-      });
-    } else if (content) {
-      // On mobile, show all content
-      gsap.set(content, { opacity: 1, y: 0 });
-    }
-  }, []);
 
   const { content } = useContent();
   const workWithUsBgColor = (content && content.workWithUsBgColor) || (content && content.primaryColor) || '#004d43';
@@ -40,10 +18,23 @@ const WorkWithUs = () => {
       className="w-full min-h-[40vh] md:min-h-screen h-auto flex flex-col items-center justify-center py-4 md:py-0"
       style={{ background: workWithUsBgColor }}
     >
-      <h1 className="font-['FoundersGrotesk'] uppercase text-[7vw] md:text-[7vw] leading-none text-white text-center mb-2 md:mb-8">
+      <motion.h1
+        initial={{ y: "100%" }}
+        whileInView={{ y: "0%" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+        className="font-['FoundersGrotesk'] uppercase text-[7vw] md:text-[7vw] leading-none text-white text-center mb-2 md:mb-8"
+      >
         Are You Ready?
-      </h1>
-      <div ref={contentRef} className="flex flex-col items-center gap-2 md:gap-6 w-full max-w-md px-2 md:px-0">
+      </motion.h1>
+      <motion.div
+        ref={contentRef}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
+        className="flex flex-col items-center gap-2 md:gap-6 w-full max-w-md px-2 md:px-0"
+      >
         <p className="font-['NeueMontrealLight'] text-[3vw] md:text-[1.1vw] uppercase tracking-widest" style={{ color: "#00e5c8" }}>
           Let's build together
         </p>
@@ -62,7 +53,7 @@ const WorkWithUs = () => {
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 };

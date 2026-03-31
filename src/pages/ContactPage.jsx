@@ -79,7 +79,7 @@ const ContactPage = () => {
                   Thank you!
                 </span>
                 <p className="font-['NeueMontrealLight'] text-zinc-400 text-[3.5vw] md:text-[1.2vw] leading-relaxed max-w-full md:max-w-[40vw]">
-                  We've received your message and will get back to you within 24 hours.
+                  We've received your message and will get back to you within 48 hours.
                 </p>
               </div>
             ) : (
